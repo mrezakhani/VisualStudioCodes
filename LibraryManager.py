@@ -30,7 +30,7 @@ def add_a_book_to_library(library):
             print("Please enter a valid value for puplication.")
     book = {"title": title, "auther": auther, "year": year, "status": "available"}
     library.append(book)
-    print("book '{title}' by auther '{auther}' and publication year '{year}' added successfully!")
+    print(f"book '{title}' by auther '{auther}' and publication year '{year}' added successfully!")
 
 
 # List all books
@@ -41,7 +41,7 @@ def list_books(library):
     print("\n=== List of books in your Library")
     for index, book in enumerate(library, start=1):
         status = "Available" if book["status"] == "available" else "Borrowed"
-        print(f"'{index}'. {book['title']} by {book['auther'] (book['year']) - (status)}")
+        print(f"{index}. {book['title']} by {book['auther']} ({book['year']}) - ({status})")
 
 
 # Search for books
@@ -49,33 +49,33 @@ def seach_books(library):
     if not library:
         print("The Library is empty.")
         return
-    query = input("Enter title or auther or year to search").strip().lower()
-    resault = [book for book in  query in library if query in book["title"].lower() or book["auther"].lower() or book["year"].lower()];
+    query = input("Enter title or auther or year to search: ").strip().lower()
+    resault = [book for book in library if query in book["title"].lower() or query in book["auther"].lower()];
     if not resault:
         print("Sorry, no book found.")
     for book in resault:
         print("")
         status = "Available" if book["status"] == "available" else "Borrowed"
-        print(f"- {book['title']} by {book['auther'] (book['year']) - (status)}")
+        print(f"- {book['title']} by {book['auther']} ({book['year']}) - ({status})")
 
 
 # Borrow or return a book
 def borrow_return_book(library):
-    list_books()
+    list_books(library)
     if not library:
         return
     try:
-        book_index = int(input("Enter the number of book, that you want to borrow or return")) -1
-        if book_index <= 0:
+        book_index = int(input("Enter the number of book, that you want to borrow or return: ")) -1
+        if book_index < 0:
             print("Invalid selection")
         else:
             book = library[book_index]
             if book["status"] == "available":
                 book["status"] = "borowed"
-                print("Yow borrowed {book['title']}")
+                print(f"Yow borrowed {book['title']}")
             else:
                 book["status"] = "available"
-                print("You returned {book['title']}")
+                print(f"You returned {book['title']}")
     except ValueError:
         print("Invalid Input. Please enter a valid number.")    
 
