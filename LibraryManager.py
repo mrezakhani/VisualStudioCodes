@@ -39,9 +39,9 @@ def list_books(library):
         print("The library is empty")
         return
     print("\n=== List of books in your Library")
-    for index, book in enumerate(library, start=1):
+    for index, book in enumerate(library, start=0):
         status = "Available" if book["status"] == "available" else "Borrowed"
-        print(f"{index}. {book['title']} by {book['auther']} ({book['year']}) - ({status})")
+        print(f"{index + 1}. {book['title']} by {book['auther']} ({book['year']}) - ({status})")
 
 
 # Search for books
